@@ -16,7 +16,7 @@ class Main(ApplicationSession):
     async def onJoin(self, details):
         await self.start_realms()
 
-    async def start_realms(self, count=150000):
+    async def start_realms(self, count=100000):
         gathered = []
         for i in range(count):
             config = self.get_realm_config(f"realm-{i}", "admin")
