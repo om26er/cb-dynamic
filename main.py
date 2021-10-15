@@ -50,9 +50,9 @@ class Main(ApplicationSession):
         role = role_config['name']
 
         proc = f'crossbar.worker.{self.worker}.start_router_realm'
-        await self.controller.call(proc, realm, realm_config)
+        self.controller.call(proc, realm, realm_config)
         proc = f'crossbar.worker.{self.worker}.start_router_realm_role'
-        await self.controller.call(proc, realm, role, role_config)
+        self.controller.call(proc, realm, role, role_config)
 
         r2r = {
             "name": "router2router",
@@ -75,7 +75,7 @@ class Main(ApplicationSession):
             ]
         }
 
-        await self.controller.call(proc, realm, 'router2router', r2r)
+        self.controller.call(proc, realm, 'router2router', r2r)
 
         component_id = uuid4().__str__()
         component_config = {
@@ -87,4 +87,4 @@ class Main(ApplicationSession):
         }
 
         proc = f'crossbar.worker.{self.worker}.start_router_component'
-        await self.controller.call(proc, component_id, component_config)
+        self.controller.call(proc, component_id, component_config)
